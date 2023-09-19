@@ -8,8 +8,9 @@ import clear_icon from "../Assets/clear.png";
 import drizzle_icon from "../Assets/drizzle.png";
 import rain_icon from "../Assets/rain.png";
 import snow_icon from "../Assets/snow.png";
+import pressure_icon from "../Assets/pressure.png";
 
-// https://api.openweathermap.org/data/2.5/weather?q=Kolkata&units=Metric&appid=31670432fe1486542515b8fc21e2663f
+
 
 export const WeatherApp = () => {
   let api_key = "31670432fe1486542515b8fc21e2663f";
@@ -17,10 +18,23 @@ export const WeatherApp = () => {
   const [wicon, setWicon] = useState(cloud_icon);
 
   const search = async () => {
+    
+    // const search = document.getElementsByClassName("search-icon");
+    // search.addEventListener("click", () =>{
+    //   if(navigator.geolocation){
+    //     // navigator.geolocation.getCurrentPosition(onSuccess, onError);
+    //     // continue;
+    //   }
+    //   else{
+    //     alert("Enter Valid Location.");
+    //   }
+    // })
+
     const element = document.getElementsByClassName("cityInput");
     if (element[0].value === "") {
       return 0;
     }
+    
     let url = `https://api.openweathermap.org/data/2.5/weather?q=${element[0].value}&units=Metric&appid=${api_key}`;
 
     let response = await fetch(url);
@@ -30,10 +44,12 @@ export const WeatherApp = () => {
     const wind = document.getElementsByClassName("wind-rate");
     const temperature = document.getElementsByClassName("weather-temp");
     const location = document.getElementsByClassName("weather-location");
+    const pressure = document.getElementsByClassName("pressure-percent");
 
     humidity[0].innerHTML = data.main.humidity + " %";
     wind[0].innerHTML = Math.floor(data.wind.speed) + " Km/h";
     temperature[0].innerHTML = Math.floor(data.main.temp) + "°C";
+    pressure[0].innerHTML = Math.floor(data.main.pressure);
     location[0].innerHTML = data.name;
 
     // Change Weather Icon
@@ -104,6 +120,13 @@ export const WeatherApp = () => {
           <div className="data">
             <div className="humidity-percent">64%</div>
             <div className="text">Humidity</div>
+          </div>
+        </div>
+        <div className="element">
+          <img src={pressure_icon} alt="" className="icon" />
+          <div className="data">
+            <div className="pressure-percent">64</div>
+            <div className="text">Pressure</div>
           </div>
         </div>
         <div className="element">

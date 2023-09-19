@@ -21,3 +21,4 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+// https://api.openweathermap.org/data/2.5/weather?q=Kolkata&units=Metric&appid=31670432fe1486542515b8fc21e2663f
