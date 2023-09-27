@@ -1,9 +1,18 @@
 
+.error {
+    /* text-align: left; */
+    margin-left: 10px;
+    font-size: 30px;
+    margin-top: 15px;
+    display: none;
+    color: red;
+}
+
 .container{
     width: 607px;
     height: 829px;
     margin: auto;
-    margin-top: 75px;
+    margin-top: 55px;
     border-radius: 12px;
     background-image: linear-gradient(to right, #0f0c29, #302b63, #24243e);
 }
@@ -82,4 +91,14 @@
 .icon{
     margin-top: 10px;
     /* color: white; */
+}
+footer{
+    margin-top: 1.5rem;
+    font-size: 1rem;
+    text-align: center;
+    color: #0f0c29;
+}
+footer span{
+    color: rgb(165, 37, 67);
+    font-weight: bold;
 }

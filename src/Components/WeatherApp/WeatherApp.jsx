@@ -18,27 +18,18 @@ export const WeatherApp = () => {
   const [wicon, setWicon] = useState(cloud_icon);
 
   const search = async () => {
-    
-    // const search = document.getElementsByClassName("search-icon");
-    // search.addEventListener("click", () =>{
-    //   if(navigator.geolocation){
-    //     // navigator.geolocation.getCurrentPosition(onSuccess, onError);
-    //     // continue;
-    //   }
-    //   else{
-    //     alert("Enter Valid Location.");
-    //   }
-    // })
-
     const element = document.getElementsByClassName("cityInput");
-    if (element[0].value === "") {
-      return 0;
-    }
     
     let url = `https://api.openweathermap.org/data/2.5/weather?q=${element[0].value}&units=Metric&appid=${api_key}`;
 
     let response = await fetch(url);
+    // if(response.status === 404){
+    //   document.querySelector(".error").style.display = "block";
+    //   document.querySelector(".container").style.display = "none";
+    // }
     let data = await response.json();
+
+
 
     const humidity = document.getElementsByClassName("humidity-percent");
     const wind = document.getElementsByClassName("wind-rate");
@@ -95,48 +86,56 @@ export const WeatherApp = () => {
       setWicon(clear_icon);
     }
   };
-
+  
   return (
-    <div className="container">
-      <div className="top-ber">
-        <input type="text" className="cityInput" placeholder="Kolkata" />
-        <div
-          className="search-icon"
-          onClick={() => {
-            search();
-          }}
-        >
-          <img src={searchIcon} alt="" />
-        </div>
+    <>
+      <div className="error">
+        <h2>Location Not Found !!!</h2>
       </div>
-      <div className="weather-image">
-        <img src={wicon} alt="" />
-      </div>
-      <div className="weather-temp">24°C</div>
-      <div className="weather-location">Kolkata</div>
-      <div className="data-container">
-        <div className="element">
-          <img src={humidity_icon} alt="" className="icon" />
-          <div className="data">
-            <div className="humidity-percent">64%</div>
-            <div className="text">Humidity</div>
+      <div className="container">
+        <div className="top-ber">
+          <input type="text" className="cityInput" placeholder="Kolkata" />
+          <div
+            className="search-icon"
+            onClick={() => {
+              search();
+            }}
+          >
+            <img src={searchIcon} alt="" />
           </div>
         </div>
-        <div className="element">
-          <img src={pressure_icon} alt="" className="icon" />
-          <div className="data">
-            <div className="pressure-percent">64</div>
-            <div className="text">Pressure</div>
-          </div>
+        <div className="weather-image">
+          <img src={wicon} alt="" />
         </div>
-        <div className="element">
-          <img src={wind_icon} alt="" className="icon" />
-          <div className="data">
-            <div className="wind-rate">18km/h</div>
-            <div className="text">Wind Speed</div>
+        <div className="weather-temp">24°C</div>
+        <div className="weather-location">Kolkata</div>
+        <div className="data-container">
+          <div className="element">
+            <img src={humidity_icon} alt="" className="icon" />
+            <div className="data">
+              <div className="humidity-percent">64%</div>
+              <div className="text">Humidity</div>
+            </div>
+          </div>
+          <div className="element">
+            <img src={pressure_icon} alt="" className="icon" />
+            <div className="data">
+              <div className="pressure-percent">64</div>
+              <div className="text">Pressure</div>
+            </div>
+          </div>
+          <div className="element">
+            <img src={wind_icon} alt="" className="icon" />
+            <div className="data">
+              <div className="wind-rate">18km/h</div>
+              <div className="text">Wind Speed</div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+      <footer>
+        &copy; 2023 <span>Subham De</span>. All rights reserved.
+      </footer>
+    </>
   );
 };
